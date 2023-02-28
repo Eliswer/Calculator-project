@@ -1,0 +1,106 @@
+.operator {
+  background-color: rgb(118, 136, 136);
+}
+
+.number {
+  background-color: transparent;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons {
+  width: 30rem;
+  height: 40rem;
+  display: grid;
+  column-gap: 3px;
+  row-gap: 3px;
+  overflow: hidden;
+  background-color: var(--main-color);
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.buttons.advanced-buttons {
+  grid-template-columns: 50% 2fr;
+  z-index: 1;
+}
+
+.buttons.basic-buttons {
+  grid-template-columns: repeat(4, 1r);
+
+  z-index: 5;
+}
+
+input[type="button"],
+button {
+  font-size: 25px;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+
+input[type="button"]:hover,
+button:hover {
+  border: 1px solid #28d3f5;
+  cursor: pointer;
+}
+
+input[type="button"]:active,
+button:active {
+  background-color: #28d3f5;
+}
+
+.equals {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.display-num__div {
+  overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid white;
+}
+
+.display-num {
+  width: 80%;
+  height: 55%;
+  font-size: 40px;
+  text-align: right;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+@keyframes inAnimation {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes outAnimation {
+  20% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
