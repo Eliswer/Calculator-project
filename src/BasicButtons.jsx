@@ -6,10 +6,16 @@ function BasicButtons({
   handleClick,
   calculate,
   numbers,
+  isMounted,
+  mountedStyle,
+  unmountedStyle,
 }) {
   return (
     <div>
-      <div className="buttons">
+      <div
+        className="basic-buttons buttons"
+        style={isMounted ? mountedStyle : unmountedStyle}
+      >
         <div className="display-num__div">
           <input
             disabled="true"
