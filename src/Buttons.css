@@ -29,7 +29,6 @@
 
 .buttons.basic-buttons {
   z-index: 10;
-  margin-right: 500px;
 }
 
 .buttons.advanced-buttons {
@@ -98,8 +97,8 @@ button:active {
 }
 
 @keyframes outAnimation {
-  20% {
-    right: 0rem;
+  0% {
+    right: 8rem;
   }
 
   80% {
@@ -122,8 +121,8 @@ button:active {
 }
 
 @keyframes outAnimation2 {
-  20% {
-    left: 0rem;
+  0% {
+    left: 11rem;
   }
 
   80% {

@@ -10,8 +10,14 @@ function Buttons({ isMounted }) {
   const renderedChild = useDelayUnmount(isMounted, 400);
   const mountedStyle = { animation: "inAnimation 500ms ease-in" };
   const unmountedStyle = { animation: "outAnimation 510ms ease-in" };
-  const animateOnMount = { animation: "inAnimation2 500ms ease-in" };
-  const animateOnUnmount = { animation: "outAnimation2 510ms ease-in" };
+  const animateOnMount = {
+    animation: "inAnimation2 500ms ease-in",
+    right: "-200px",
+  };
+  const animateOnUnmount = {
+    animation: "outAnimation2 510ms ease-in",
+    right: "-150px",
+  };
 
   const handleErase = () => {
     setNumbers(numbers.substring(0, numbers.length - 1));
