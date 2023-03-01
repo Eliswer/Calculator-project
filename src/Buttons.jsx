@@ -8,14 +8,14 @@ function Buttons({ isMounted }) {
   const [numbers, setNumbers] = useState("");
   const shouldRenderChild = useDelayUnmount(isMounted, 400);
   const renderedChild = useDelayUnmount(isMounted, 400);
-  const mountedStyle = { animation: "inAnimation 500ms ease-in" };
-  const unmountedStyle = { animation: "outAnimation 510ms ease-in" };
+  const mountedStyle = { animation: "inAnimation 750ms ease-in" };
+  const unmountedStyle = { animation: "outAnimation 750ms ease-in" };
   const animateOnMount = {
-    animation: "inAnimation2 500ms ease-in",
+    animation: "inAnimation2 750ms ease-in",
     right: "-200px",
   };
   const animateOnUnmount = {
-    animation: "outAnimation2 510ms ease-in",
+    animation: "outAnimation2 750ms ease-in",
     right: "-150px",
   };
 
@@ -28,9 +28,16 @@ function Buttons({ isMounted }) {
   };
 
   const handleClick = (e) => {
-    setNumbers(numbers + e.target.value);
-    console.log(e.target.value);
+    if (typeof e === "object") {
+      setNumbers(numbers + e.target.value);
+    } else {
+      setNumbers(numbers + e);
+    }
   };
+
+  document.addEventListener("keydown", (e) => {
+    handleClick(e.key);
+  });
 
   const handlePie = (e) => {
     setNumbers(numbers + e.target.name);

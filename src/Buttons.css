@@ -84,7 +84,8 @@ button:active {
 
 @keyframes inAnimation {
   0% {
-    right: 0rem;
+    right: 150px;
+    opacity: 0;
   }
 
   50% {
@@ -93,6 +94,7 @@ button:active {
 
   100% {
     right: 19.375rem;
+    opacity: 1;
   }
 }
 
@@ -104,11 +106,15 @@ button:active {
   80% {
     right: -9rem;
   }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes inAnimation2 {
   0% {
-    left: 0rem;
+    left: 100px;
   }
 
   50% {
@@ -122,7 +128,7 @@ button:active {
 
 @keyframes outAnimation2 {
   0% {
-    left: 11rem;
+    left: 150px;
   }
 
   80% {
