@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdvancedButtons from "./AdvancedButtons";
 import BasicButtons from "./BasicButtons";
 import "./Buttons.css";
@@ -35,8 +35,13 @@ function Buttons({ isMounted }) {
     }
   };
 
-  document.addEventListener("keydown", (e) => {
+  const keyPress = (e) => {
     handleClick(e.key);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
   });
 
   const handlePie = (e) => {
