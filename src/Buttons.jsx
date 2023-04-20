@@ -34,26 +34,25 @@ function Buttons({ isMounted }) {
     }
   };
 
-  const keyPress = (e) => {
-    function containsUppercase(str) {
-      return /[A-Z]/.test(str);
-    }
+  const re = new RegExp("^[0-9 ()+-/*]$");
 
-    function containsLetter(str) {
-      return /[a-z]/.test(str);
-    }
+  const validateInput = (key) => {
+    return re.test(key);
+  };
+
+  const keyPress = (e) => {
+    let key = e.key;
+    let isValid = validateInput(key);
 
     console.log(e);
-    if (e.key === "Backspace") {
+    if (isValid) {
+      handleClick(e.key);
+    } else if (e.key === "Backspace") {
       handleErase();
     } else if (e.key === "Enter") {
       calculate();
-    } else if (containsUppercase(e.key) === true) {
-      e.preventDefault();
-    } else if (containsLetter(e.key) === true) {
-      e.preventDefault();
     } else {
-      handleClick(e.key);
+      e.preventDefault();
     }
   };
 
