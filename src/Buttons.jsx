@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdvancedButtons from "./AdvancedButtons";
 import BasicButtons from "./BasicButtons";
 import "./Buttons.css";
@@ -7,15 +7,14 @@ import useDelayUnmount from "./useDelayUnmount";
 function Buttons({ isMounted }) {
   const [numbers, setNumbers] = useState("");
   const shouldRenderChild = useDelayUnmount(isMounted, 400);
-  const renderedChild = useDelayUnmount(isMounted, 400);
-  const mountedStyle = { animation: "inAnimation 500ms ease-in" };
-  const unmountedStyle = { animation: "outAnimation 510ms ease-in" };
+  const mountedStyle = { animation: "inAnimation 750ms ease-in" };
+  const unmountedStyle = { animation: "outAnimation 750ms ease-in" };
   const animateOnMount = {
-    animation: "inAnimation2 500ms ease-in",
+    animation: "inAnimation2 750ms ease-in",
     right: "-200px",
   };
   const animateOnUnmount = {
-    animation: "outAnimation2 510ms ease-in",
+    animation: "outAnimation2 750ms ease-in",
     right: "-150px",
   };
 
@@ -28,9 +27,39 @@ function Buttons({ isMounted }) {
   };
 
   const handleClick = (e) => {
-    setNumbers(numbers + e.target.value);
-    console.log(e.target.value);
+    if (typeof e === "object") {
+      setNumbers(numbers + e.target.value);
+    } else {
+      setNumbers(numbers + e);
+    }
   };
+
+  const re = new RegExp("^[0-9 ()+-/*]$");
+
+  const validateInput = (key) => {
+    return re.test(key);
+  };
+
+  const keyPress = (e) => {
+    let key = e.key;
+    let isValid = validateInput(key);
+
+    console.log(e);
+    if (isValid) {
+      handleClick(e.key);
+    } else if (e.key === "Backspace") {
+      handleErase();
+    } else if (e.key === "Enter") {
+      calculate();
+    } else {
+      e.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  });
 
   const handlePie = (e) => {
     setNumbers(numbers + e.target.name);
@@ -56,13 +85,14 @@ function Buttons({ isMounted }) {
     setNumbers(Math.pow(numbers, 3));
   };
 
-  const calculate = (e) => {
+  const calculate = () => {
     if (numbers === "") {
       setNumbers("");
     } else {
       setNumbers(eval(numbers));
     }
   };
+
   return (
     <div className="container">
       {shouldRenderChild && (
