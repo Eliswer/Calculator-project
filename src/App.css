@@ -34,9 +34,10 @@ h1 {
 }
 
 .main-btn {
-  width: 11rem;
+  width: 13rem;
   color: #262e35;
   margin-bottom: 20px;
+  padding: 10px 15px;
 }
 
 .main-btn:hover {

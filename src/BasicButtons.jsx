@@ -18,7 +18,7 @@ function BasicButtons({
       >
         <div className="display-num__div">
           <input
-            disabled="true"
+            disabled={true}
             value={numbers}
             placeholder="0"
             className="display-num"

@@ -7,7 +7,6 @@ import useDelayUnmount from "./useDelayUnmount";
 function Buttons({ isMounted }) {
   const [numbers, setNumbers] = useState("");
   const shouldRenderChild = useDelayUnmount(isMounted, 400);
-  const renderedChild = useDelayUnmount(isMounted, 400);
   const mountedStyle = { animation: "inAnimation 750ms ease-in" };
   const unmountedStyle = { animation: "outAnimation 750ms ease-in" };
   const animateOnMount = {
@@ -36,7 +35,26 @@ function Buttons({ isMounted }) {
   };
 
   const keyPress = (e) => {
-    handleClick(e.key);
+    function containsUppercase(str) {
+      return /[A-Z]/.test(str);
+    }
+
+    function containsLetter(str) {
+      return /[a-z]/.test(str);
+    }
+
+    console.log(e);
+    if (e.key === "Backspace") {
+      handleErase();
+    } else if (e.key === "Enter") {
+      calculate();
+    } else if (containsUppercase(e.key) === true) {
+      e.preventDefault();
+    } else if (containsLetter(e.key) === true) {
+      e.preventDefault();
+    } else {
+      handleClick(e.key);
+    }
   };
 
   useEffect(() => {
@@ -68,13 +86,14 @@ function Buttons({ isMounted }) {
     setNumbers(Math.pow(numbers, 3));
   };
 
-  const calculate = (e) => {
+  const calculate = () => {
     if (numbers === "") {
       setNumbers("");
     } else {
       setNumbers(eval(numbers));
     }
   };
+
   return (
     <div className="container">
       {shouldRenderChild && (
