@@ -9,6 +9,7 @@ function App() {
   const handleToggleClicked = () => {
     setIsMounted(!isMounted);
 
+    /*Change title if complicated section of calculator is showing*/
     if (isMounted === false) {
       setTitle("Semi-complicated Calculator");
     } else {

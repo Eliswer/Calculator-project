@@ -5,6 +5,7 @@ import "./Buttons.css";
 import useDelayUnmount from "./useDelayUnmount";
 
 function Buttons({ isMounted }) {
+  /*All of my managed states*/
   const [numbers, setNumbers] = useState("");
   const shouldRenderChild = useDelayUnmount(isMounted, 400);
   const mountedStyle = { animation: "inAnimation 750ms ease-in" };
@@ -18,22 +19,7 @@ function Buttons({ isMounted }) {
     right: "-150px",
   };
 
-  const handleErase = () => {
-    setNumbers(numbers.substring(0, numbers.length - 1));
-  };
-
-  const handleClear = () => {
-    setNumbers("");
-  };
-
-  const handleClick = (e) => {
-    if (typeof e === "object") {
-      setNumbers(numbers + e.target.value);
-    } else {
-      setNumbers(numbers + e);
-    }
-  };
-
+  /*Input validation to not include letters and fire events on certain keys*/
   const re = new RegExp("^[0-9 ()+-/*]$");
 
   const validateInput = (key) => {
@@ -44,7 +30,6 @@ function Buttons({ isMounted }) {
     let key = e.key;
     let isValid = validateInput(key);
 
-    console.log(e);
     if (isValid) {
       handleClick(e.key);
     } else if (e.key === "Backspace") {
@@ -60,6 +45,23 @@ function Buttons({ isMounted }) {
     document.addEventListener("keydown", keyPress);
     return () => document.removeEventListener("keydown", keyPress);
   });
+
+  /*Functions for every calculator button*/
+  const handleErase = () => {
+    setNumbers(numbers.substring(0, numbers.length - 1));
+  };
+
+  const handleClear = () => {
+    setNumbers("");
+  };
+
+  const handleClick = (e) => {
+    if (typeof e === "object") {
+      setNumbers(numbers + e.target.value);
+    } else {
+      setNumbers(numbers + e);
+    }
+  };
 
   const handlePie = (e) => {
     setNumbers(numbers + e.target.name);
