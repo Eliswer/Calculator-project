@@ -15,8 +15,8 @@
 }
 
 .buttons {
-  width: 30rem;
-  height: 40rem;
+  width: 480px;
+  height: 540px;
   display: grid;
   column-gap: 3px;
   row-gap: 3px;
@@ -35,7 +35,7 @@
   grid-template-columns: 50% 2fr;
   z-index: 1;
   right: 310px;
-  margin-top: 42rem;
+  margin-top: 35.6rem;
 }
 
 input[type="button"],
