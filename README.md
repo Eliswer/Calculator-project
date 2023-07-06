@@ -5,6 +5,10 @@ Normal calculator with a button to switch to advanced mode
   1. React
 
 # How to set up:
+Install dependencies:
+```bash
+npm install
+```
 Start the server:
 ```bash
 npm start
